@@ -1,3 +1,43 @@
+// ============================================
+// CSC 111 – Introduction to Computing
+// Assignment: Project using Sequences, Selections, Loops
+// Student Name: [Danna Cabrejo, Esther Uap, Remaly Dalmeida]
+// Z Number: Z00196449 (DannaCabrejo)
+// Date: [2025-09-30]
+// Instructor: Prof. Felicity M. Weed Jackson
+// File Name: quiz.js
+// ============================================
+/* Description:
+This program creates a simple interactive quiz game on a web page. When the user clicks the 
+"Start Quiz" button, a series of multiple-choice questions is displayed one at a time. 
+The user selects an answer, and the program checks if it is correct, updates the score,
+and then moves to the next question. At the end, it shows the final score.
+Key JavaScript concepts used:
+Variables – to store the score, current question index, and question data
+Functions – to organize the logic (e.g., starting the quiz, displaying questions, checking answers)
+Loops – to iterate through the answer options for each question
+Selection (if statements) – to check if the user’s answer is correct
+DOM manipulation – to dynamically update the content on the web page.
+*/
+
+/* How it works:
+The program starts when the user clicks the "Start Quiz" button. It then:
+Displays a question with multiple-choice answers.
+Waits for the user to click one of the answer buttons.
+Checks if the selected answer is correct and updates the score.
+Moves to the next question and repeats the process.
+After all questions are answered, it displays the final score on the webpage.
+*/
+
+/* Reflection:
+I learned how to create an interactive quiz using JavaScript, including how to use functions,
+loops, and conditionals to control program flow. One of the challenging parts was keeping track of 
+the current question and updating the webpage content dynamically using the DOM (Document Object Model)
+I found it interesting how JavaScript can respond to user input in real time to create a smooth
+and engaging experience.
+*/
+// ============================================
+
 function runQQuiz() {
   const questions = [
     {
