@@ -41,106 +41,60 @@ and engaging experience.
 function runQuiz() {
   const questions = [
     {
-      question: "What does the \"var"\ keyword do in JavaScript?",
-      options: [
-        "A) Declares a variable that is globally scoped or function scoped",
-        "B) Declares a variable that is block-scoped",
-        "C) Declares a constant variable",
-        "D) Declares a class"
-      ],
-      correctAnswer: 0
+      question: "1. Which symbol is used for single-line comments in JavaScript?",
+      options: ["A) <!-- -->", "B) //", "C) /* */", "D) Declares a class"],
+      correctAnswer: "B"
     },
     {
-      question: "Which of the following is NOT a valid data type in JavaScript?",
-      options: [
-        "A) Number",
-        "B) String",
-        "C) Boolean",
-        "D) Character"
-      ],
-      correctAnswer: 3
+      question: "2. Which keyword declares a constant variable?",
+      options: ["A) let", "B) var", "C) const", "D) static"],
+      correctAnswer: "C"
     },
     {
-      question: "What is the result of the following JavaScript expression: 0 == false",
-      options: [
-        "A) true",
-        "B) false",
-        "C) undefined",
-        "D) NaN"
-      ],
-      correctAnswer: 0
+      question: "3. Which operator is used to assign a value to a variable?",
+      options: ["A) =", "B) ==", "C) ===", "D) :="],
+      correctAnswer: "A"
     },
     {
-      question: "Which of the following JavaScript statements is used to exit a loop early?",
-      options: [
-        "A) break",
-        "B) exit",
-        "C) stop",
-        "D) return"
-      ],
-      correctAnswer: 0
+      question: "4. Which loop is guaranteed to run at least once in JavaScript?",
+      options: ["A) for loop", "B) while loop", "C) do...while loop", "D) foreach loop"],
+      correctAnswer: "C"
     },
     {
       question: "Which of the following best describes the difference between RAM (Random Access Memory) and a hard drive?",
-      options: [
-        "A) RAM is non-volatile, while a hard drive is volatile",
-        "B) RAM is used for permanent storage, while a hard drive is used for temporary storage",
-        "C) RAM is faster and used for temporary data storage, while a hard drive is slower and used for permanent storage",
-        "D) RAM is used for networking, while a hard drive stores data."
-      ],
-      correctAnswer: 2
+      options: ["A) RAM is non-volatile, while a hard drive is volatile", "B) RAM is used for permanent storage, while a hard drive is used for temporary storage", "C) RAM is faster and used for temporary data storage, while a hard drive is slower and used for permanent storage", "D) RAM is used for networking, while a hard drive stores data."],
+      correctAnswer: "C"
     }
   ];
 
-  let score = 0; //Track the user's score
-  let current Question = 0; //Keep track of the current question
-  
-  const quizContainer = document.getElementById("quiz-container");
-  const resultContainer = document.getElementById("result");
+  //Variables to keep track of progress
+  let currentQuestion = 0;
+  let score = 0; 
 
-  resultContainer.innerHTML = "";//Clear previous result
+  //HTML references
+  const quizDiv = document.getElementById("quiz");
+  const nextBtn = docment.getElementById("nextBtn");
+  const resultP = document.getElementById("result");
 
-  //Display the current question
-  function displayQuestion() {
-   quizContainer.innerHTML = "";//Clear previous question
+  //Function to show a question
+  function showQuestion(inndex) {
+    quizDivinnerHTML = "";//Clear previous content
 
-    if (currentQuestion < questions.length) {
-      const q = questions[currentQuestion];
+    let q = questions[index];//current question
 
-      const questionElem = document.createElement("h2");
-      questionElem.textContent = q.question;
-      quizContainer.appendChild(questionElem);
+    //Show question text
+    let questionElem = document.createElement("p");
+    questionElem.textContent = q.question;
+    quizDiv.appendChild(questionElem);
 
-      //Create buttons for each option
-      q.options.forEach((option, index) => {
-        const btn = document.createElement("button");
-        btn.textContent = option;
-        btn.style.display = "block";
-        btn.style.margin = "8px 0";
-        btn.onclick = () => checkAnswer(index);
-        quizContainer.appendChild(btn);
-      });
-    } else {
-      showResult();
-    }
-  }
+    //Loop through options
+    for (let i = 0; i < q.options.length; i++) {
+      let btn=document.createElement("button");
+      btn.textContent = q.options[i];
 
-  //Check the selected answer
-  function checkAnswer(selectedIndex) {
-    const correct = questions[currentQuestion].correctAnswer;
-    if (selectedIndex === correct) {
-      score++;
-    }
-
-    currentQuestion++;
-    displayQuestion();
-  }
-
-  //Show the final score
-  function showResult() {
-    quizContainer.innerHTML = "";
-    resultContainer.innerHTML = "You scored" + score + "out of" + questions.length + "!";
-  }
+      btn.onclick = function () {
+        let choice = q.options[i]charAt(0); /A, B, C, or D
+                                        
 
   //Start the quiz
   displayQuestion();
