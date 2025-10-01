@@ -38,7 +38,7 @@ and engaging experience.
 */
 // ============================================
 
-function runQQuiz() {
+function runQuiz() {
   const questions = [
     {
       question: "What does the "var" keyword do in JavaScript?",
