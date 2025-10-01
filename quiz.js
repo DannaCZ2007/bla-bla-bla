@@ -39,31 +39,32 @@ and engaging experience.
 // ============================================
 
 function runQuiz() {
+  //Quiz questions(array of objects)
   const questions = [
     {
       question: "1. Which symbol is used for single-line comments in JavaScript?",
-      options: ["A) <!-- -->", "B) //", "C) /* */", "D) Declares a class"],
-      correctAnswer: "B"
+      options: ["A) <!-- -->", "B) //", "C) /* */", "D) #"],
+      answer: "B"
     },
     {
       question: "2. Which keyword declares a constant variable?",
       options: ["A) let", "B) var", "C) const", "D) static"],
-      correctAnswer: "C"
+      answer: "C"
     },
     {
       question: "3. Which operator is used to assign a value to a variable?",
       options: ["A) =", "B) ==", "C) ===", "D) :="],
-      correctAnswer: "A"
+      answer: "A"
     },
     {
       question: "4. Which loop is guaranteed to run at least once in JavaScript?",
       options: ["A) for loop", "B) while loop", "C) do...while loop", "D) foreach loop"],
-      correctAnswer: "C"
+      answer: "C"
     },
     {
       question: "Which of the following best describes the difference between RAM (Random Access Memory) and a hard drive?",
       options: ["A) RAM is non-volatile, while a hard drive is volatile", "B) RAM is used for permanent storage, while a hard drive is used for temporary storage", "C) RAM is faster and used for temporary data storage, while a hard drive is slower and used for permanent storage", "D) RAM is used for networking, while a hard drive stores data."],
-      correctAnswer: "C"
+      answer: "C"
     }
   ];
 
@@ -73,12 +74,12 @@ function runQuiz() {
 
   //HTML references
   const quizDiv = document.getElementById("quiz");
-  const nextBtn = docment.getElementById("nextBtn");
+  const nextBtn = document.getElementById("nextBtn");
   const resultP = document.getElementById("result");
 
   //Function to show a question
-  function showQuestion(inndex) {
-    quizDivinnerHTML = "";//Clear previous content
+  function showQuestion(index) {
+    quizDiv.innerHTML = "";//Clear previous content
 
     let q = questions[index];//current question
 
@@ -89,13 +90,45 @@ function runQuiz() {
 
     //Loop through options
     for (let i = 0; i < q.options.length; i++) {
-      let btn=document.createElement("button");
+      let btn = document.createElement("button");
       btn.textContent = q.options[i];
 
       btn.onclick = function () {
-        let choice = q.options[i]charAt(0); /A, B, C, or D
-                                        
+        let choice = q.options[i].charAt(0); //A, B, C, or D
 
-  //Start the quiz
-  displayQuestion();
+        //Selection (if/else)
+        if (choice === q.answer) {
+          score++;
+          alert("Correct!");
+        } else {
+          alert("Wrong! The correct answer was " + q.answer);
+        }
+
+        //Show "Next" button
+        nextBtn.style.display = "block";
+      };
+      quizDiv.appendChild(btn);
+      quizDiv.appendChild(document.createElement("br"));
+    }
+  }
+
+  //Handle "Next" button
+  nextBtn.onclick = function () {
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+      showQuestion(currentQuestion);
+      nextBtn.style.display = "none";
+    } else {
+      quizDiv.innerHTML = "";
+      nextBtn.style.display = "none";
+      resultP.textContent = "Quiz finished! You scored " + score + " out of " + questions.length;
+    }
+  };
+
+  //start the quiz
+  showQuestion(currentQuestion);
 }
+
+//call the function when the script loads
+runQuiz();
