@@ -41,7 +41,7 @@ and engaging experience.
 function runQuiz() {
   const questions = [
     {
-      question: "What does the "var" keyword do in JavaScript?",
+      question: "What does the \"var"\ keyword do in JavaScript?",
       options: [
         "A) Declares a variable that is globally scoped or function scoped",
         "B) Declares a variable that is block-scoped",
@@ -86,7 +86,8 @@ function runQuiz() {
         "A) RAM is non-volatile, while a hard drive is volatile",
         "B) RAM is used for permanent storage, while a hard drive is used for temporary storage",
         "C) RAM is faster and used for temporary data storage, while a hard drive is slower and used for permanent storage",
-        "D) RAM is used for networking, while a hard drive stores data."],
+        "D) RAM is used for networking, while a hard drive stores data."
+      ],
       correctAnswer: 2
     }
   ];
@@ -94,7 +95,7 @@ function runQuiz() {
   let score = 0; //Track the user's score
   let current Question = 0; //Keep track of the current question
   
-  const quizcontainer = docuument.getElemntById("quiz-container");
+  const quizContainer = document.getElementById("quiz-container");
   const resultContainer = document.getElementById("result");
 
   resultContainer.innerHTML = "";//Clear previous result
@@ -106,17 +107,17 @@ function runQuiz() {
     if (currentQuestion < questions.length) {
       const q = questions[currentQuestion];
 
-      const questionElem = document.createElement("h1");
+      const questionElem = document.createElement("h2");
       questionElem.textContent = q.question;
       quizContainer.appendChild(questionElem);
 
       //Create buttons for each option
-      q.options.forEach((option, index) -> {
-        cont btn = document.createElement("button");
-        btn.textConent = option;
-        btn.atyle.display = "block";
+      q.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = option;
+        btn.style.display = "block";
         btn.style.margin = "8px 0";
-        btn.onclick = () => chckAnswer(index);
+        btn.onclick = () => checkAnswer(index);
         quizContainer.appendChild(btn);
       });
     } else {
@@ -124,10 +125,10 @@ function runQuiz() {
     }
   }
 
-  //Chack the selected answer
-  function checkAnswer(selectedIndex0 {
+  //Check the selected answer
+  function checkAnswer(selectedIndex) {
     const correct = questions[currentQuestion].correctAnswer;
-    if (selectedIndex === orrect) {
+    if (selectedIndex === correct) {
       score++;
     }
 
@@ -138,10 +139,9 @@ function runQuiz() {
   //Show the final score
   function showResult() {
     quizContainer.innerHTML = "";
-    resultContainer.innerHTML = '<h2>You scored ${score} out of ${questins.length}!</h2>;
+    resultContainer.innerHTML = "You scored" + score + "out of" + questions.length + "!";
   }
 
   //Start the quiz
   displayQuestion();
 }
-    
